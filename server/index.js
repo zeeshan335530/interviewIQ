@@ -76,5 +76,10 @@ const startServer = async () => {
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
     });
+  } catch (error) {
+    console.error("❌ Server startup failed because MongoDB is unavailable.");
+    process.exit(1);
+  }
+};
 
 startServer();
