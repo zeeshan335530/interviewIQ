@@ -67,19 +67,14 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ message: "Internal server error" });
 });
 
-const PORT = process.env.PORT || 6000;
+const PORT = Number(process.env.PORT) || 10000;
 
 const startServer = async () => {
   try {
     await connectDb();
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`Server running on port ${PORT}`);
     });
-  } catch (error) {
-    console.error("❌ Server startup failed because MongoDB is unavailable.");
-    process.exit(1);
-  }
-};
 
 startServer();
