@@ -142,33 +142,52 @@ InterviewIQ.AI/
 ├── .gitignore
 ├── package-lock.json
 └── README.md
+```
 
-### ⚙️ Installation and Setup
+## ⚙️ Installation and Setup
 
-1. Clone the Repository
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/zeeshan335530/interviewIQ.git
 cd interviewIQ
+```
 
-2. Setup Backend
+### 2. Setup Backend
+
+```bash
 cd server
 npm install
 node index.js
+```
 
 Backend runs on:
-http://localhost:8000
 
-3. Setup Frontend
+```text
+http://localhost:8000
+```
+
+### 3. Setup Frontend
+
 Open another terminal:
+
+```bash
 cd client
 npm install
 npm run dev
+```
 
 Frontend runs on:
+
+```text
 http://localhost:5173
+```
 
-### 🔑 Environment Variables
+## 🔑 Environment Variables
 
-## Backend .env
+### Backend `.env`
+
+```env
 PORT=8000
 MONGODB_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
@@ -179,8 +198,11 @@ RAZORPAY_KEY_ID=your_razorpay_key_id
 RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 RESEND_API_KEY=your_resend_api_key
 EMAIL_FROM=your_sender_email
+```
 
-## Frontend .env
+### Frontend `.env`
+
+```env
 VITE_SERVER_URL=http://localhost:8000
 VITE_FIREBASE_API_KEY=your_firebase_api_key
 VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
@@ -189,8 +211,13 @@ VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_sender_id
 VITE_FIREBASE_APP_ID=your_firebase_app_id
 VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
+```
 
-### 📊 Application Workflow
+> ⚠️ Never upload `.env` files or secret API keys to GitHub.
+
+## 📊 Application Workflow
+
+```text
 User Login
     ↓
 Create Interview
@@ -208,41 +235,48 @@ Analytics & Feedback
 Generate Interview Report
     ↓
 Download PDF / Send Report by Email
+```
 
-### 🎯 Project Objective
+## 🎯 Project Objective
 
 The main objective of InterviewIQ.AI is to provide an accessible and intelligent platform where candidates can practice interviews, understand their weaknesses, and continuously improve their interview skills.
 
-### 💡 About the Project
+## 💡 About the Project
 
-InterviewIQ.AI was developed as a practical full-stack AI project combining Artificial Intelligence, Web Development, Authentication, Database Management, Payments, Analytics, PDF generation, and Email Services into one complete application.
+InterviewIQ.AI was developed as a practical full-stack AI project combining **Artificial Intelligence, Web Development, Authentication, Database Management, Payments, Analytics, PDF generation, and Email Services** into one complete application.
+
 The project involved designing the frontend, developing the backend APIs, integrating multiple external services, connecting the database, handling authentication and payments, deploying the application, and testing the complete workflow in production.
 
-### 💪 Built With Hard Work
+## 💪 Built With Hard Work
 
 This project was built with continuous learning, debugging, testing, and problem-solving.
+
 From developing the initial application to integrating AI, authentication, payments, analytics, PDF reports, email delivery, and finally deploying both frontend and backend, every part of the project required practical development and troubleshooting.
+
 The goal was not only to build a project, but to create something that can actually help candidates prepare for real interviews.
 
-### 🔮 Future Improvements
-🎙️ Advanced voice interview capabilities
-🗣️ Speech and communication analysis
-📱 Mobile application
-📚 More interview categories
-🧑‍💼 Company-specific interview preparation
-📈 Advanced performance tracking
-🌍 Support for more languages
+## 🔮 Future Improvements
 
-### 👨‍💻 Author
-Zeeshan Ansari
-Passionate about Full-Stack Development, Artificial Intelligence, and building practical real-world applications.
+- 🎙️ Advanced voice interview capabilities
+- 🗣️ Speech and communication analysis
+- 📱 Mobile application
+- 📚 More interview categories
+- 🧑‍💼 Company-specific interview preparation
+- 📈 Advanced performance tracking
+- 🌍 Support for more languages
+
+## 👨‍💻 Author
+
+### Zeeshan Ansari
+
+Passionate about **Full-Stack Development, Artificial Intelligence, and building practical real-world applications**.
 
 🔗 GitHub: https://github.com/zeeshan335530
 
-### ⭐ Support
+## ⭐ Support
 
 If you like this project, consider giving the repository a ⭐ on GitHub.
 
-Thanks for checking out InterviewIQ.AI 🚀
+Thanks for checking out **InterviewIQ.AI** 🚀
 
-Prepare Better. Practice Smarter. Interview with Confidence.
+> **Prepare Better. Practice Smarter. Interview with Confidence.**
