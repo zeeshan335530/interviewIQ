@@ -1,9 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import axios from "axios";
 
 /**
  * Send interview report email with PDF attachment.
@@ -25,8 +23,8 @@ export const sendReportEmail = async ({
   pdfBase64,
   roadmap,
 }) => {
-  if (!process.env.RESEND_API_KEY) {
-    console.warn("[Email] RESEND_API_KEY is missing. Skipping email.");
+  if (!process.env.BREVO_API_KEY) {
+    console.warn("[Email] BREVO_API_KEY is missing. Skipping email.");
     return { skipped: true };
   }
 
@@ -271,27 +269,63 @@ export const sendReportEmail = async ({
   const filename = `InterviewIQ_Report_${candidateName
     .replace(/\s+/g, "_")}.pdf`;
 
-  const { data, error } = await resend.emails.send({
-    from: process.env.EMAIL_FROM || "InterviewIQ.AI <onboarding@resend.dev>",
-    to: [toEmail],
-    subject: `Your InterviewIQ Report — ${role} — Score ${finalScore}/10`,
-    html,
-    attachments: pdfBase64
-      ? [
+  try {
+    const response = await axios.post(
+      "https://api.brevo.com/v3/smtp/email",
+      {
+        sender: {
+          name: "InterviewIQ.AI",
+          email: process.env.EMAIL_FROM,
+        },
+
+        to: [
           {
-            filename,
-            content: pdfBase64,
+            email: toEmail,
+            name: candidateName,
           },
-        ]
-      : [],
-  });
+        ],
 
-  if (error) {
-    console.error("[Email] Resend failed:", error);
-    throw new Error(error.message || "Failed to send email");
+        subject: `Your InterviewIQ Report — ${role} — Score ${finalScore}/10`,
+
+        htmlContent: html,
+
+        attachment: pdfBase64
+          ? [
+              {
+                name: filename,
+                content: pdfBase64,
+              },
+            ]
+          : [],
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "api-key": process.env.BREVO_API_KEY,
+          "content-type": "application/json",
+        },
+      }
+    );
+
+    console.log(
+      "[Email] Brevo email sent successfully:",
+      response.data?.messageId
+    );
+
+    return {
+      sent: true,
+      id: response.data?.messageId,
+    };
+  } catch (error) {
+    console.error(
+      "[Email] Brevo failed:",
+      error.response?.data || error.message
+    );
+
+    throw new Error(
+      error.response?.data?.message ||
+        error.message ||
+        "Failed to send email"
+    );
   }
-
-  console.log("[Email] Resend email sent successfully:", data?.id);
-
-  return { sent: true, id: data?.id };
 };
